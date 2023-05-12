@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perimattic-is</title>
+</head>
+<body>
+   <h1>Form</h1>
+    <!-- Form to take input -->
+    <form id="myForm" action="#">
+        <input type="text" autocomplete="off" name="name" placeholder="Name" />
+        <input type="email" autocomplete="off" name="email" autocomplete="false" placeholder="Email" />
+        <!-- Can Add other form fields if needed -->
+        <button type="submit">Submit</button>
+    </form>
+    
+    <!-- Using jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <!-- The Below script is used to send the taken input -->
+      <script>
+        $(document).ready(function () {
+          $('#myForm').submit(function (event) {
+            event.preventDefault();
+      
+            const formData = $(this).serialize();
+      
+            $.ajax({
+              url: '/api/data', 
+              method: 'POST',
+              data: formData,
+              success: function () {
+                alert("Data have been saved successfully");
+              },
+              error: function (xhr, status, error) {
+                console.log(error);
+              },
+            });
+          });
+        });
+      </script>
+      
+</body>
+</html>
